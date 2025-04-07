@@ -18,12 +18,71 @@ class MLBGameSimulator:
         self.commentary_flavors = {
             'strikeout': [
                 "And he goes down swinging!",
-                "Strike three called! That's a nasty breaking ball.",
-                "Fans him with high heat!",
-                "Swings through the fastball for strike three!",
-                "Paints the corner with a perfect pitch!"
+                "Swings and misses, that's strike three!",
+                "Loses the battle, strikeout!"
             ],
-            # [Previous event types remain the same...]
+            'walk': [
+                "And he takes ball four for a walk.",
+                "Works the count and draws the walk.",
+                "Free pass issued to the batter."
+            ],
+            'single': [
+                "Lines it into left field for a single!",
+                "Base hit up the middle!",
+                "Drops it in shallow center for a single.",
+                "Ground ball finds a hole! Runner on first."
+            ],
+            'double': [
+                "Ripped into the gap! That's a stand-up double!",
+                "Off the wall! He's in at second with a double.",
+                "Lined down the line for a two-bagger!"
+            ],
+            'triple': [
+                "Driven deep to right center! He's going for three!",
+                "Gap shot! The outfielder can't cut it off - triple!",
+                "Off the wall and it gets away! Triple for the batter!"
+            ],
+            'homerun': [
+                "HIGH FLY BALL... DEEP LEFT FIELD... GONE! HOME RUN!",
+                "CRUSHED! That ball is way outta here!",
+                "Launches one to the upper deck! Homerun!",
+                "No doubt about it! That's a moonshot!"
+            ],
+            'groundout': [
+                "Ground ball to short, throw to first... out.",
+                "Chopper to third, easy play for the out.",
+                "Rolls over it, ground out to second base."
+            ],
+            'flyout': [
+                "High fly ball to left, caught for the out.",
+                "Can of corn to center field.",
+                "Lazy pop fly to the infield, caught."
+            ],
+            'double_play': [
+                "Ground ball... turn two! Double play!",
+                "One-hopper to short, around the horn for two!",
+                "Perfect double play ball to second base."
+            ],
+            'wild_pitch': [
+                "Wild pitch! The runner advances!",
+                "Gets away from the catcher!",
+                "Spiked in the dirt, gets past the backstop."
+            ],
+            'passed_ball': [
+                "Passed ball! Runner moves up!",
+                "Catcher can't handle it!",
+                "Tips off the glove, runner takes the base."
+            ],
+            'steal': [
+                "Runner goes! SAFE at second base!",
+                "Great jump! Stolen base!",
+                "Slide... SAFE! Stolen base successful."
+            ],
+            'pitching_change': [
+                "And here comes the manager, making a pitching change.",
+                "Bullpen gate swings open, new arm coming in.",
+                "They're going to the pen for a fresh arm."
+            ]
         }
     
     def draw_diamond(self):
