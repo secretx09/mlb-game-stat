@@ -15,15 +15,12 @@ class MLBGameSimulator:
         self.commentary_flavors = {
             'strikeout': [
                 "And he goes down swinging!",
-                "Strike three called! That's a nasty curveball.",
-                "Fans him with a high fastball!",
                 "Swings and misses, that's strike three!",
-                "Paints the corner for the K!"
+                "Loses the battle, strikeout!"
             ],
             'walk': [
                 "And he takes ball four for a walk.",
                 "Works the count and draws the walk.",
-                "Too close to take, but the ump says ball four.",
                 "Free pass issued to the batter."
             ],
             'single': [
