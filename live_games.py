@@ -274,7 +274,7 @@ def main():
         selected_game = simulator.select_game(live_games)
         
         if not selected_game:
-            print("Exiting MLB Play-by-Play Simulator.")
+            print("Exiting")
             break
         
         simulator.simulate_game(
@@ -287,9 +287,9 @@ def main():
         simulator.print_stats()
         
         # Ask if user wants to follow another game
-        choice = input("\nWould you like to follow another game? (Y/N): ")
+        choice = input("\nWould you like to check another game? (Y/N): ")
         if choice.upper() != 'Y':
-            print("Thanks for using the MLB Play-by-Play Simulator!")
+            print("Thanks for using")
             break
         
         # Reset for new game
