@@ -8,11 +8,14 @@ import time
 init(autoreset=True)
 
 def get_todays_games():
-    today = datetime.now().strftime('%Y-%m-%d')
+    today = datetime.now().strftime('%m-%d-%Y')
     return get_games_by_date(today)
 
 def get_games_by_date(date):
-    url = f"https://statsapi.mlb.com/api/v1/schedule?sportId=1&date={date}"
+    date_obj = datetime.strptime(date, '%m-%d-%Y')
+    formatted_date = date_obj.strftime('%Y-%m-%d')
+    
+    url = f"https://statsapi.mlb.com/api/v1/schedule?sportId=1&date={formatted_date}"
     
     try:
         response = requests.get(url, timeout=10)
@@ -46,7 +49,6 @@ def get_games_by_date(date):
         return None
 
 def get_game_data(game_pk):
-    # Try multiple endpoints to get game data
     endpoints = [
         f"https://statsapi.mlb.com/api/v1/game/{game_pk}/linescore",
         f"https://statsapi.mlb.com/api/v1/game/{game_pk}/boxscore",
@@ -58,7 +60,7 @@ def get_game_data(game_pk):
             response = requests.get(endpoint, timeout=5)
             if response.status_code == 200:
                 return response.json()
-            time.sleep(0.5)  # Brief delay between requests
+            time.sleep(0.5)
         except requests.exceptions.RequestException:
             continue
     
@@ -94,7 +96,7 @@ def display_game_summary(game_info, game_data):
         print(f"Status: {game_info['status']} | Venue: {game_info['venue']}")
         return
     
-    # Basic game info
+    # Basic game information
     away_team = game_info['away_team']
     home_team = game_info['home_team']
     away_score = game_info['away_score']
@@ -102,7 +104,7 @@ def display_game_summary(game_info, game_data):
     game_time = datetime.strptime(game_info['game_date'], "%Y-%m-%dT%H:%M:%SZ").strftime("%I:%M %p")
     venue = game_info['venue']
     
-    # Determine winner and colors
+    # Find the winner and colors
     if away_score > home_score:
         away_color = Fore.GREEN
         home_color = Fore.RED
@@ -198,15 +200,15 @@ def main():
     choice = input("Would you like to see today's games (t) or a previous day's games (p)? ")
     
     if choice.lower() == 't':
-        today = datetime.now().strftime('%Y-%m-%d')
+        today = datetime.now().strftime('%m-%d-%Y')
         games = get_games_by_date(today)
     elif choice.lower() == 'p':
-        date_input = input("Enter the date (YYYY-MM-DD) of the games you want to see: ")
+        date_input = input("Enter the date (MM-DD-YYYY) of the games you want to see: ")
         try:
-            datetime.strptime(date_input, '%Y-%m-%d')  # Validate date format
+            datetime.strptime(date_input, '%m-%d-%Y')
             games = get_games_by_date(date_input)
         except ValueError:
-            print(Fore.RED + "Invalid date format. Please use YYYY-MM-DD.")
+            print(Fore.RED + "Invalid date format. Please use MM-DD-YYYY.")
             return
     else:
         print(Fore.RED + "Invalid choice. Please select 't' or 'p'.")
