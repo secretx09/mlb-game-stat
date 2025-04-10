@@ -3,7 +3,7 @@ import random
 import time
 from datetime import datetime
 
-class MLBGameSimulator:
+class MLBGameStat:
     def __init__(self):
         self.base_url = "https://statsapi.mlb.com/api/v1/"
         self.game_id = None
@@ -267,7 +267,7 @@ class MLBGameSimulator:
             print(f"{pitcher['name']}: {pitcher['ip']} IP, {pitcher['h']} H, {pitcher['er']} ER, {pitcher['so']} K, ERA: {era}")
 
 def main():
-    simulator = MLBGameSimulator()
+    simulator = MLBGameStat()
     
     while True:
         live_games = simulator.get_live_games()
